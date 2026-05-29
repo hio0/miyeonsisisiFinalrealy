@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cae7827d85dd724ca2d85bf2fd9af17, type: 3}
+  m_Name: wndrn 2
+  m_EditorClassIdentifier: 
+  bg: {fileID: 21300000, guid: cafa1a518dabaf44d973e175f30117ef, type: 3}
+  eventname: "\uAD50\uC721 \uC778\uD504\uB77C \uD655\uC7A5"
+  eventlog: "\uAD50\uC721\uACC4 \uC778\uD504\uB77C\uB97C \uD655\uC7A5\uC2DC\uD0A8\uB2E4\uBA74
+    \n\uC2DC\uBBFC\uB4E4\uC758 \uAD50\uC721\uC758 \uC9C8\uC774 \uD48D\uBD80\uD574\uC9C0\uACE0
+    \uC88B\uC544\uC9C8 \uAC83\uC774\uB2E4."
+  correctlog: "\uC131\uACF5\uC801\uC73C\uB85C \uBC95\uC744 \uBC14\uAFB8\uC5C8\uB2E4.\n\uC2DC\uBBFC\uB4E4\uC758
+    \uC0B6\uC774 \uB354\uC6B1 \uD65C\uAE30\uCC28\uC84C\uB2E4."
+  faillog: "\uC544\uC27D\uAC8C\uB3C4 \uC2DC\uBBFC\uB4E4\uC774 \uBC14\uB77C\uB294
+    \uBC29\uD5A5\uC774 \uC544\uB2C8\uC600\uB2E4."
+  succsecs: 90
+  usemoney: 13
+  ismust: 0
+  plushogamdo: 15

@@ -42,7 +42,7 @@ public class MainManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         
+
     }
 
     public void GetAllHogamdo()
@@ -88,6 +88,9 @@ public class MainManager : MonoBehaviour
 
     public void EndGame()
     {
+        SaveManager.save.SaveData();
+
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

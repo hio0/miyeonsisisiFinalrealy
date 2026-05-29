@@ -14,12 +14,23 @@ public class Data
 
 public class SaveManager : MonoBehaviour
 {
+    public static SaveManager save;
     public Data data = new Data();
 
     private void Awake()
     {
+        if(save == null)
+        {
+            save = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
         LoadData();
     }
+
     // Start is called before the first frame update
     void Start()
     {

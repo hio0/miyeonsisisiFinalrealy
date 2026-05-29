@@ -80,7 +80,7 @@ public class DivisionControl : MonoBehaviour
                 }
             }
 
-            if (MainManager.main.nextepi.Length >= my.episodeCount)
+            if (MainManager.main.nextepi.Length > my.episodeCount)
             {
                 if(my.hogamdo >= MainManager.main.nextepi[my.episodeCount])
                 {

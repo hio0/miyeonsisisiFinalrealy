@@ -35,6 +35,7 @@ public class EpisodeManager : MonoBehaviour
     Select sb;
 
     [SerializeField] GameObject talkP;
+    [SerializeField] GameObject talkobj;
     [SerializeField] Image charimage;
     [SerializeField] TMP_Text nameT;
     [SerializeField] TMP_Text mainT;
@@ -112,15 +113,12 @@ public class EpisodeManager : MonoBehaviour
         SetFeels(feels.normal);
         SetNextTalk();
 
-        talkP.GetComponent<RectTransform>().anchoredPosition = new Vector3(2000, 0, 0);
-        StartCoroutine(UIMovement.UIMove.MoveAnimation(talkP, new Vector3(0, 0, 0), 1.5f, null));
+        talkobj.GetComponent<RectTransform>().anchoredPosition = new Vector3(2000, 0, 0);
+        StartCoroutine(UIMovement.UIMove.MoveAnimation(talkobj, new Vector3(0, 0, 0), 1.5f, null));
     }
 
     void SetNextTalk()
     {
-        StopAllCoroutines();
-        log = null;
-
         if (talktime >= episode.texts.Length)
         {
             EpisodeEnd();
@@ -130,11 +128,12 @@ public class EpisodeManager : MonoBehaviour
             Action action = null;
             
             SetFonts(normalF);
-            charimage.gameObject.SetActive(true);
 
             if (isnormaltalk)
             {
+                StopAllCoroutines();
                 log = episode.texts[talktime];
+                charimage.gameObject.SetActive(true);
 
                 if (log.Contains("*"))
                 {
@@ -160,6 +159,9 @@ public class EpisodeManager : MonoBehaviour
                     }
                     else
                     {
+                        StopAllCoroutines();
+                        charimage.gameObject.SetActive(true);
+
                         if (oneselecttime == 0)
                         {
                             if (sb.iscorrect)
@@ -322,7 +324,7 @@ public class EpisodeManager : MonoBehaviour
     public void EndTalk()
     {
         talkP.SetActive(false);
-        talking = true;
+        talking = false;
 
         if (targetdivision.episodeCount == 2)
         {
