@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e1018d78f20f54d8f56740326b35c6, type: 3}
+  m_Name: Ep1_Y1M
+  m_EditorClassIdentifier: 
+  selectname: "\u201C\uD558\u2026\u201D (\uBD80\uB2F4\uC2A4\uB7EC\uC6B4 \uC2DC\uC120\uACFC
+    \uC6A9\uC0B0\uAD6C\uB97C \uD53C\uD55C\uB2E4.) "
+  th: 0
+  iscorrect: 0
+  selectedlog:
+  - ........
+  - "#(\uC548\uADF8\uB798\uB3C4 \uC8FD\uC740 \uAC83\uB9CC \uAC19\uB358 \uC6A9\uC0B0\uAD6C\uC758
+    \uC2DC\uC120\uC774 \uC8FD\uC740 \uC9C0 \uBA70\uCE60 \uC9C0\uB09C \uAC83\uCC98\uB7FC
+    \uCC28\uAC11\uAC8C \uC2DD\uC5C8\uB2E4.) "
+  - ' . . . . . .'
+  - "#(\uC6A9\uC0B0\uAD6C\uC758 \uB208\uB3D9\uC790\uB294 \uC810\uCC28 \uBA40\uC5B4\uC9C0\uB294
+    \uB4EF \uD588\uB2E4.) "
+  - "#(\uC6A9\uC0B0\uAD6C\uC758 \uC2DC\uC120\uC740 \uC5B4\uB290 \uC21C\uAC04\uC774
+    \uC9C0\uB098\uC790 \uACAC\uB514\uAE30 \uD798\uB4E4\uAC8C \uB290\uAEF4\uC9C0\uAE30
+    \uC2DC\uC791\uD574 \uD53C\uD574\uBCF8\uB2E4.) "
