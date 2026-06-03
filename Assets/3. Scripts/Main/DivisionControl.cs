@@ -71,10 +71,8 @@ public class DivisionControl : MonoBehaviour
 
                     if (eventzuttotimer < 0)
                     {
-                        if (eventzuttotimer < 0)
-                        {
-                            EventManager.Event.Return();
-                        }
+                        StartCoroutine(EventManager.Event.Delete());
+
                         Clear();
                     }
                 }
@@ -82,7 +80,7 @@ public class DivisionControl : MonoBehaviour
 
             if (MainManager.main.nextepi.Length > my.episodeCount)
             {
-                if(my.hogamdo >= MainManager.main.nextepi[my.episodeCount])
+                if (my.hogamdo >= MainManager.main.nextepi[my.episodeCount])
                 {
                     cannextepi = true;
                     hogadogauge.fillAmount = 1f;
@@ -113,7 +111,7 @@ public class DivisionControl : MonoBehaviour
             Clear();
         }
 
-        if(my.hogamdo >= 3000)
+        if (my.hogamdo >= 3000)
         {
             my.hogamdo = 3000;
         }

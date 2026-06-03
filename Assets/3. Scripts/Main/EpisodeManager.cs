@@ -39,6 +39,7 @@ public class EpisodeManager : MonoBehaviour
     [SerializeField] Image charimage;
     [SerializeField] TMP_Text nameT;
     [SerializeField] TMP_Text mainT;
+    [SerializeField] TMP_Text episodeT;
 
     [SerializeField] Transform selects;
     [SerializeField] GameObject select;
@@ -85,6 +86,7 @@ public class EpisodeManager : MonoBehaviour
 
         targetdivision = div;
         episode = targetdivision.episodes[targetdivision.episodeCount];
+        episodeT.text = $"EPISODE {targetdivision.episodeCount + 1}";
 
         talktime = 0;
         selecttime = 0;

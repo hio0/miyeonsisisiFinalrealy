@@ -171,10 +171,9 @@ public class EventManager : MonoBehaviour
         StartCoroutine(Delete());
     }
 
-    IEnumerator Delete()
+    public IEnumerator Delete()
     {
         buttons.SetActive(false);
-        divi.Clear();
         yield return new WaitForSeconds(3f);
 
         Hide();

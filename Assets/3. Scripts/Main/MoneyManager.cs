@@ -43,8 +43,8 @@ public class MoneyManager : MonoBehaviour
             moneytimer = 0f;
         }
 
-        moneyT.text = $"돈 : <b>{money.ToString("F1")}</b>";
-        hogamdoT.text = $"호감도: <b>{hogamdo.ToString("F1")}/s</b>";
+        moneyT.text = $"{money.ToString("F1")}원";
+        hogamdoT.text = $"{hogamdo.ToString("F1")}/s";
 
         if (money < 0)
         {

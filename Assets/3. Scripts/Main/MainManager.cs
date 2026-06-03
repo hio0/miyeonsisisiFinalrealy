@@ -19,6 +19,11 @@ public class MainManager : MonoBehaviour
 
     public CanvasGroup fadeP;
 
+    public GameObject statt;
+    public Transform stattworld;
+    public Division nowchangediv;
+    public float nowchangedhogamdo;
+
     private void Awake()
     {
         if (main == null)
@@ -55,7 +60,7 @@ public class MainManager : MonoBehaviour
             allhogamdo += div.hogamdo;
         }
 
-        if(allhogamdo <= 0)
+        if (allhogamdo <= 0)
         {
             allhogamdo = 1;
         }
@@ -65,25 +70,43 @@ public class MainManager : MonoBehaviour
 
     public void SetDivision()
     {
-        if(alldivisioncount == divisons.Length)
+        if (alldivisioncount == divisons.Length)
         {
             return;
         }
 
-        for(int i = 0;i < alldivisioncount; i++)
+        for (int i = 0; i < alldivisioncount; i++)
         {
-            if(!divisons[i].GetComponent<DivisionControl>().enabled)
+            if (!divisons[i].GetComponent<DivisionControl>().enabled)
             {
                 seoultime = false;
                 divisons[i].GetComponent<DivisionControl>().enabled = true;
                 StartCoroutine(AlamManager.Alam.AlamText("새로운 구 해금"));
+
+                GameObject s = Instantiate(statt, stattworld);
+                s.transform.Find("name").GetComponent<TMP_Text>().text = divisons[i].GetComponent<DivisionControl>().my.me.name;
             }
 
-            if(i < alldivisioncount && seoultime)
+            if (i < alldivisioncount && seoultime)
             {
                 seoul.enabled = true;
             }
         }
+    }
+
+    public IEnumerator PlusHogamdo(Division div, float plusvalue, float framespeed)
+    {
+        nowchangediv = div;
+        nowchangedhogamdo = plusvalue;
+        float muchplus = 0;
+
+        while (muchplus < plusvalue)
+        {
+            div.hogamdo += plusvalue / framespeed;
+            muchplus++;
+            yield return null;
+        }
+        nowchangediv = null;
     }
 
     public void EndGame()
