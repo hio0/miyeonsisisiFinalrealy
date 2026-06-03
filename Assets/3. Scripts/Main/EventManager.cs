@@ -135,7 +135,7 @@ public class EventManager : MonoBehaviour
             if (a < selectevent.succsecs)
             {
                 eventT.text += "\n" + selectevent.correctlog + $"<b><color=#FF407F>\n호감도가 {selectevent.plushogamdo.ToString("F1")}만큼 올랐다!</color></b>";
-                div.hogamdo += selectevent.plushogamdo;
+                StartCoroutine(MainManager.main.PlusHogamdo(div, selectevent.plushogamdo, 10, true));
             }
             else
             {
@@ -146,7 +146,7 @@ public class EventManager : MonoBehaviour
                     minus = selectevent.plushogamdo / 2;
 
                     log = $"<b><color=#FF407F>\n호감도가 {minus.ToString("F1")}만큼 내려간 것 같다...</color></b>";
-                    div.hogamdo -= minus;
+                    StartCoroutine(MainManager.main.PlusHogamdo(div, minus, 10, false));
                 }
 
                 eventT.text += "\n" + selectevent.faillog + log;
@@ -165,7 +165,7 @@ public class EventManager : MonoBehaviour
             float minus = selectevent.plushogamdo / 4;
 
             eventT.text += $"<b><color=#FF407F>\n호감도가 {minus.ToString("F1")}만큼 내려간 것 같다...</color></b>";
-            div.hogamdo -= minus;
+            StartCoroutine(MainManager.main.PlusHogamdo(div, minus, 10, false ));
             MainManager.main.GetAllHogamdo();
         }
         StartCoroutine(Delete());
@@ -176,6 +176,7 @@ public class EventManager : MonoBehaviour
         buttons.SetActive(false);
         yield return new WaitForSeconds(3f);
 
+        divi.Clear();
         Hide();
         buttons.SetActive(true);
     }

@@ -84,7 +84,7 @@ public class MainManager : MonoBehaviour
                 StartCoroutine(AlamManager.Alam.AlamText("새로운 구 해금"));
 
                 GameObject s = Instantiate(statt, stattworld);
-                s.transform.Find("name").GetComponent<TMP_Text>().text = divisons[i].GetComponent<DivisionControl>().my.me.name;
+                s.GetComponent<Statt>().IHaveNoEyesSoGiveToMeThis(divisons[i].GetComponent<DivisionControl>().my, s.transform.Find("name").GetComponent<TMP_Text>(), s.transform.Find("hogamdocount").GetComponent<TMP_Text>(), s.transform.Find("hogamdo").GetComponent<Image>(), s.transform.Find("plusT").GetComponent<TMP_Text>());
             }
 
             if (i < alldivisioncount && seoultime)
@@ -94,7 +94,7 @@ public class MainManager : MonoBehaviour
         }
     }
 
-    public IEnumerator PlusHogamdo(Division div, float plusvalue, float framespeed)
+    public IEnumerator PlusHogamdo(Division div, float plusvalue, float framespeed, bool isplus)
     {
         nowchangediv = div;
         nowchangedhogamdo = plusvalue;
@@ -102,9 +102,18 @@ public class MainManager : MonoBehaviour
 
         while (muchplus < plusvalue)
         {
-            div.hogamdo += plusvalue / framespeed;
+            Debug.Log("hogamdo");
+
+            if (isplus)
+            {
+                div.hogamdo += plusvalue / framespeed;
+            }
+            else
+            {
+                div.hogamdo -= plusvalue / framespeed;
+            }
             muchplus++;
-            yield return null;
+            yield return new WaitForSeconds(0.1f);
         }
         nowchangediv = null;
     }

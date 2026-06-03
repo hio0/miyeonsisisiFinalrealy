@@ -26,6 +26,8 @@ public class Statt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        hogamdogauge.fillAmount = mydiv.hogamdo / MainManager.main.nextepi[mydiv.episodeCount];
+
         if (MainManager.main.nextepi.Length > mydiv.episodeCount)
         {
             hogamdocount.text = $"{mydiv.hogamdo}<size=30>/{MainManager.main.nextepi[mydiv.episodeCount]}</size>";
@@ -36,13 +38,13 @@ public class Statt : MonoBehaviour
             hogamdocount.text = $"{mydiv.hogamdo}<size=30>/MAX</size>";
         }
 
-        if(MainManager.main.nowchangediv == mydiv && !plusT.gameObject.activeSelf) // 그냥 OnHogamdoPlused 이벤트 만들어놓고 거기에 구독시켜 놓으면 됨. 굳이 이렇게 mydiv가 nowchangeddiv야!! 라고 감지 할 필요 없이.
+        if (MainManager.main.nowchangediv == mydiv && !plusT.gameObject.activeSelf) // 그냥 OnHogamdoPlused 이벤트 만들어놓고 거기에 구독시켜 놓으면 됨. 굳이 이렇게 mydiv가 nowchangeddiv야!! 라고 감지 할 필요 없이.
         {
             StartCoroutine(ChangeHogamdo(MainManager.main.nowchangedhogamdo));
         }
     }
 
-    void IHaveNoEyesSoGiveToMeThis(Division div,TMP_Text name, TMP_Text hogamT, Image hogamG, TMP_Text plT)
+    public void IHaveNoEyesSoGiveToMeThis(Division div,TMP_Text name, TMP_Text hogamT, Image hogamG, TMP_Text plT)
     {
         mydiv = div;
 
@@ -50,30 +52,32 @@ public class Statt : MonoBehaviour
         hogamdocount = hogamT;
         hogamdogauge = hogamG;
         plusT = plT;
+        plusT.gameObject.SetActive(false);
     }
 
     public IEnumerator ChangeHogamdo(float plusvalue)
     {
-        Instantiate(plusT.gameObject, new Vector2(gameObject.transform.position.x - 25, gameObject.transform.position.y), gameObject.transform.rotation);
+        plusT.gameObject.SetActive(true);
         plusT.text = $"+{plusvalue}";
-
-        plusT.gameObject.transform.Translate(Vector2.up * 3 * Time.deltaTime);
 
         yield return new WaitForSeconds(0.5f);
 
         UnityEngine.Color color = plusT.color;
         float startAlpha = color.a;
         float time = 0;
+        float muchtime = 1.5f;
 
-        while (time > 10)
+        while (time < muchtime)
         {
+            plusT.gameObject.transform.Translate(Vector2.up * 1 * Time.deltaTime);
+
             time += Time.deltaTime;
 
-            float alpha = Mathf.Lerp(startAlpha, 0f, time / 10);
+            float alpha = Mathf.Lerp(startAlpha, 0f, time / muchtime);
             plusT.color = new UnityEngine.Color(color.r, color.g, color.b, alpha);
 
             yield return null;
         }
-        Destroy(plusT.gameObject);
+        plusT.gameObject.SetActive(false);
     }
 }

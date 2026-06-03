@@ -313,7 +313,9 @@ public class EpisodeManager : MonoBehaviour
     void EpisodeEnd()
     {
         float plus = plushogamdo * 2;
-        targetdivision.hogamdo += plus;
+
+        StartCoroutine(MainManager.main.PlusHogamdo(targetdivision, plus, 10,true));
+
         MainManager.main.GetAllHogamdo();
 
         if(targetdivision.episodeCount < targetdivision.episodes.Length)

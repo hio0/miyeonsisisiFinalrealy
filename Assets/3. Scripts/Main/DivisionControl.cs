@@ -108,6 +108,7 @@ public class DivisionControl : MonoBehaviour
         else
         {
             eventalim.SetActive(false);
+            isalim = false;
             Clear();
         }
 
@@ -139,7 +140,6 @@ public class DivisionControl : MonoBehaviour
 
         timersetting = false;
         zuttotimersetting = false;
-        isalim = false;
         hogamdoT.text = my.me.name;
         hogadogauge.fillAmount = 0f;
         cannextepi = false;
