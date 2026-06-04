@@ -6,6 +6,7 @@ using UnityEngine;
 public class Speaker : ScriptableObject
 {
     public Sprite[] charactorImages;
+    public Sprite icon;
 
     new public string name;
 }

@@ -60,11 +60,11 @@ public class UIMovement : MonoBehaviour
         action?.Invoke();
     }
 
-    public IEnumerator MoveAnimation(GameObject what, Vector3 target, float speed, Action action)
+    public IEnumerator MoveAnimation(RectTransform what, Vector2 target, float speed, Action action)
     {
-        while (what.transform.position != target)
+        while (what.anchoredPosition != target)
         {
-            what.transform.position = Vector3.MoveTowards(what.transform.position, target, speed);
+            what.anchoredPosition = Vector2.MoveTowards(what.anchoredPosition, target, speed);
             yield return null;
         }
 

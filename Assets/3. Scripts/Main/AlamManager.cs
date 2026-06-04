@@ -7,7 +7,7 @@ public class AlamManager : MonoBehaviour
 {
     public static AlamManager Alam;
 
-    public GameObject alam;
+    public RectTransform alam;
     public TMP_Text alamT;
 
     private void Awake()
@@ -25,7 +25,7 @@ public class AlamManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(alam.transform.position);
+        alam.anchoredPosition = new Vector2(120, alam.anchoredPosition.y);
     }
 
     // Update is called once per frame
@@ -34,12 +34,18 @@ public class AlamManager : MonoBehaviour
         
     }
 
+    public void StopAlam()
+    {
+        //Coroutine cor = AlamText;
+    }
+
     public IEnumerator AlamText(string what)
     {
         alamT.text = what;
+        float pos = alamT.text.Length * 35;
 
-        StartCoroutine(UIMovement.UIMove.MoveAnimation(alam, new Vector3(-12, 3, alam.transform.position.z), 0.1f, null));
+        StartCoroutine(UIMovement.UIMove.MoveAnimation(alam, new Vector2(-pos, alam.anchoredPosition.y), 5f, null));
         yield return new WaitForSeconds(3f);
-        StartCoroutine(UIMovement.UIMove.MoveAnimation(alam, new Vector3(-20, 3, alam.transform.position.z), 0.1f, null));
+        StartCoroutine(UIMovement.UIMove.MoveAnimation(alam, new Vector2(120, alam.anchoredPosition.y), 5f, null));
     }
 }

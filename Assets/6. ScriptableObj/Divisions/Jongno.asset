@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   me: {fileID: 11400000, guid: 89297ecfffa934a4db492f2793528146, type: 2}
   episodeCount: 0
-  hogamdo: 168.5
+  hogamdo: 1
   episodes:
   - {fileID: 11400000, guid: 63a3aa5fecd2c164dbeb74277826fcea, type: 2}
   - {fileID: 11400000, guid: f41b77be0b6be634cb036b6f2bdcb6ea, type: 2}

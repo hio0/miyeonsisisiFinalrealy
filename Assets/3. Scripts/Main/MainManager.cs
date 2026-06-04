@@ -39,8 +39,8 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetAllHogamdo();
         SetDivision();
+        GetAllHogamdo();
         StartCoroutine(UIMovement.UIMove.FadeOut(fadeP, 1.5f, null));
     }
 
@@ -56,8 +56,13 @@ public class MainManager : MonoBehaviour
 
         foreach (GameObject ob in divisons)
         {
-            Division div = ob.GetComponent<DivisionControl>().my;
-            allhogamdo += div.hogamdo;
+            DivisionControl divic = ob.GetComponent<DivisionControl>();
+            
+            if(divic.enabled)
+            {
+                Division div = ob.GetComponent<DivisionControl>().my;
+                allhogamdo += div.hogamdo;
+            }
         }
 
         if (allhogamdo <= 0)
@@ -84,7 +89,7 @@ public class MainManager : MonoBehaviour
                 StartCoroutine(AlamManager.Alam.AlamText("새로운 구 해금"));
 
                 GameObject s = Instantiate(statt, stattworld);
-                s.GetComponent<Statt>().IHaveNoEyesSoGiveToMeThis(divisons[i].GetComponent<DivisionControl>().my, s.transform.Find("name").GetComponent<TMP_Text>(), s.transform.Find("hogamdocount").GetComponent<TMP_Text>(), s.transform.Find("hogamdo").GetComponent<Image>(), s.transform.Find("plusT").GetComponent<TMP_Text>());
+                s.GetComponent<Statt>().IHaveNoEyesSoGiveToMeThis(divisons[i].GetComponent<DivisionControl>().my);
             }
 
             if (i < alldivisioncount && seoultime)
@@ -112,6 +117,7 @@ public class MainManager : MonoBehaviour
             {
                 div.hogamdo -= plusvalue / framespeed;
             }
+            GetAllHogamdo();
             muchplus++;
             yield return new WaitForSeconds(0.1f);
         }

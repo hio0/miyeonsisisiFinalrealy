@@ -116,7 +116,7 @@ public class EpisodeManager : MonoBehaviour
         SetNextTalk();
 
         talkobj.GetComponent<RectTransform>().anchoredPosition = new Vector3(2000, 0, 0);
-        StartCoroutine(UIMovement.UIMove.MoveAnimation(talkobj, new Vector3(0, 0, 0), 1.5f, null));
+        StartCoroutine(UIMovement.UIMove.MoveAnimation(talkobj.GetComponent<RectTransform>(), new Vector2(0, 0), 6, null));
     }
 
     void SetNextTalk()
@@ -316,13 +316,11 @@ public class EpisodeManager : MonoBehaviour
 
         StartCoroutine(MainManager.main.PlusHogamdo(targetdivision, plus, 10,true));
 
-        MainManager.main.GetAllHogamdo();
-
         if(targetdivision.episodeCount < targetdivision.episodes.Length)
         {
             targetdivision.episodeCount++;
         }
-        StartCoroutine(UIMovement.UIMove.MoveAnimation(talkP, new Vector3(-25, 0, 0), 0.5f, EndTalk));
+        StartCoroutine(UIMovement.UIMove.MoveAnimation(talkP.GetComponent<RectTransform>(), new Vector2(-2500f, 0), 6, EndTalk));
     }
 
     public void EndTalk()

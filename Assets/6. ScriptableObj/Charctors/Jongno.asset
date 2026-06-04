@@ -21,4 +21,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8bb86997f9ff2ec45a1ed1fe0d468888, type: 3}
   - {fileID: 21300000, guid: 62cb852f0f061a443be38989653b3e71, type: 3}
   - {fileID: 21300000, guid: 602fa77a3dde3b248a8ae4ba6f70889b, type: 3}
+  icon: {fileID: -679157487, guid: acdf112904d4142449efafe98e9670d5, type: 3}
   name: "\uC885\uB85C\uAD6C"

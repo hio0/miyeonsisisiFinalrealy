@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Yongsan
   m_EditorClassIdentifier: 
   me: {fileID: 11400000, guid: a9c2d107d11073648ad49b88d0a6575d, type: 2}
-  episodeCount: 1
-  hogamdo: 0
+  episodeCount: 0
+  hogamdo: 1
   episodes:
   - {fileID: 11400000, guid: 6382a8808486e4f48b7661819db93618, type: 2}
   - {fileID: 11400000, guid: eaf7e2295801ba0449b5696d273f4a94, type: 2}

@@ -14,6 +14,9 @@ public class Statt : MonoBehaviour
     public TMP_Text hogamdocount;
     public Image hogamdogauge;
     public Image icon;
+    public GameObject malpungsun;
+    public TMP_Text malpungT;
+    float malpungtimer;
 
     public TMP_Text plusT;
 
@@ -21,9 +24,10 @@ public class Statt : MonoBehaviour
     void Start()
     {
         myname.text = mydiv.me.name;
+        icon.sprite = mydiv.me.icon;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         hogamdogauge.fillAmount = mydiv.hogamdo / MainManager.main.nextepi[mydiv.episodeCount];
@@ -44,15 +48,16 @@ public class Statt : MonoBehaviour
         }
     }
 
-    public void IHaveNoEyesSoGiveToMeThis(Division div,TMP_Text name, TMP_Text hogamT, Image hogamG, TMP_Text plT)
+    public void IHaveNoEyesSoGiveToMeThis(Division div)
     {
         mydiv = div;
 
-        myname = name;
-        hogamdocount = hogamT;
-        hogamdogauge = hogamG;
-        plusT = plT;
         plusT.gameObject.SetActive(false);
+    }
+
+    void RssetTimer()
+    {
+
     }
 
     public IEnumerator ChangeHogamdo(float plusvalue)
@@ -78,6 +83,8 @@ public class Statt : MonoBehaviour
 
             yield return null;
         }
+        plusT.GetComponent<RectTransform>().localPosition = new Vector2(-6.6f, 103.9f);
+        plusT.color = new UnityEngine.Color(color.r, color.g, color.b, 255);
         plusT.gameObject.SetActive(false);
     }
 }

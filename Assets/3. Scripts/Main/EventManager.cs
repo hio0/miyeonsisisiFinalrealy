@@ -22,6 +22,7 @@ public class EventManager : MonoBehaviour
     public TMP_Text eventT;
     public TMP_Text eventnameT;
     public TMP_Text eventimer;
+    public TMP_Text correctT;
 
     public GameObject buttons;
 
@@ -98,8 +99,17 @@ public class EventManager : MonoBehaviour
         selectevent = divi.myevent;
         eventnameT.text = selectevent.eventname;
         bg.sprite = selectevent.bg;
+        correctT.gameObject.SetActive(false);
+        if(selectevent.usemoney <= 0)
+        {
+            correctT.text = $"성공률: {selectevent.succsecs}%";
+        }
+        else
+        {
+            correctT.text = $"성공률: {selectevent.succsecs}%\n필요 요금: {selectevent.usemoney}원";
+        }
 
-        string log = null;
+            string log = null;
         if (selectevent.usemoney >= MoneyManager.Money.hogamdo * 2)
         {
             log += "\n거금을 지불해야 될 것 같은 느낌이 든다...";
@@ -152,7 +162,6 @@ public class EventManager : MonoBehaviour
                 eventT.text += "\n" + selectevent.faillog + log;
             }
 
-            MainManager.main.GetAllHogamdo();
             StartCoroutine(Delete());
         }
     }
@@ -166,7 +175,6 @@ public class EventManager : MonoBehaviour
 
             eventT.text += $"<b><color=#FF407F>\n호감도가 {minus.ToString("F1")}만큼 내려간 것 같다...</color></b>";
             StartCoroutine(MainManager.main.PlusHogamdo(div, minus, 10, false ));
-            MainManager.main.GetAllHogamdo();
         }
         StartCoroutine(Delete());
     }
