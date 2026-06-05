@@ -20,7 +20,7 @@ public class Content : MonoBehaviour
         if(lastlengh != targetT.textInfo.lineCount)
         {
             lastlengh = targetT.textInfo.lineCount;
-            gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(gameObject.GetComponent<RectTransform>().sizeDelta.x, targetT.textInfo.lineCount * 90);
+            gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(gameObject.GetComponent<RectTransform>().sizeDelta.x, targetT.textInfo.lineCount * 90 + 150);
         }
     }
 }

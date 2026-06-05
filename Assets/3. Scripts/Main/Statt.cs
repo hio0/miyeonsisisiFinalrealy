@@ -16,7 +16,8 @@ public class Statt : MonoBehaviour
     public Image icon;
     public GameObject malpungsun;
     public TMP_Text malpungT;
-    float malpungtimer;
+    public float malpungtimer;
+    bool ismalpungon;
 
     public TMP_Text plusT;
 
@@ -25,45 +26,89 @@ public class Statt : MonoBehaviour
     {
         myname.text = mydiv.me.name;
         icon.sprite = mydiv.me.icon;
+
+        plusT.gameObject.SetActive(false);
+        malpungsun.SetActive(false);
+
+        RssetTimer();
     }
 
     
     void Update()
     {
-        hogamdogauge.fillAmount = mydiv.hogamdo / MainManager.main.nextepi[mydiv.episodeCount];
-
         if (MainManager.main.nextepi.Length > mydiv.episodeCount)
         {
+            hogamdogauge.fillAmount = mydiv.hogamdo / MainManager.main.nextepi[mydiv.episodeCount];
             hogamdocount.text = $"{mydiv.hogamdo}<size=30>/{MainManager.main.nextepi[mydiv.episodeCount]}</size>";
         }    
         else
         {
+            hogamdogauge.fillAmount = 1;
             myname.text = $"<b><color=#FF407F>{mydiv.me.name}</color></b>";
             hogamdocount.text = $"{mydiv.hogamdo}<size=30>/MAX</size>";
         }
 
         if (MainManager.main.nowchangediv == mydiv && !plusT.gameObject.activeSelf) // 그냥 OnHogamdoPlused 이벤트 만들어놓고 거기에 구독시켜 놓으면 됨. 굳이 이렇게 mydiv가 nowchangeddiv야!! 라고 감지 할 필요 없이.
         {
-            StartCoroutine(ChangeHogamdo(MainManager.main.nowchangedhogamdo));
+            StartCoroutine(ChangeHogamdo(MainManager.main.nowchangedhogamdo, MainManager.main.nowhogamdoplused));
         }
-    }
 
-    public void IHaveNoEyesSoGiveToMeThis(Division div)
-    {
-        mydiv = div;
-
-        plusT.gameObject.SetActive(false);
+        malpungtimer -= Time.deltaTime;
+        if (malpungtimer < 0 && !ismalpungon)
+        {
+            StartCoroutine(SmallTalk());
+            malpungtimer = 0;
+        }
     }
 
     void RssetTimer()
     {
-
+        malpungtimer = Random.Range(15f, 50f);
+        ismalpungon = false;
     }
 
-    public IEnumerator ChangeHogamdo(float plusvalue)
+    IEnumerator SmallTalk()
+    {
+        malpungsun.SetActive(true);
+        ismalpungon = true;
+
+        int a = Random.Range(0, 11);
+        string t = null;
+
+        if(a >= 6)
+        {
+            t = MainManager.main.malpungsuntalks[Random.Range(0, MainManager.main.malpungsuntalks.Count - 1)];
+        }
+        else
+        {
+            t = mydiv.smalltalks[Random.Range(0, mydiv.smalltalks.Length - 1)];
+        }
+
+        malpungT.text = null;
+        foreach(char text in t.ToCharArray())
+        {
+            malpungT.text += text;
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        yield return new WaitForSeconds(3f);
+
+        malpungsun.SetActive(false);
+        RssetTimer();
+    }
+
+    public IEnumerator ChangeHogamdo(float cvalue, bool isplus)
     {
         plusT.gameObject.SetActive(true);
-        plusT.text = $"+{plusvalue}";
+
+        if(isplus)
+        {
+            plusT.text = $"+{cvalue}";
+        }
+        else
+        {
+            plusT.text = $"-{cvalue}";
+        }
 
         yield return new WaitForSeconds(0.5f);
 

@@ -12,4 +12,6 @@ public class Division : ScriptableObject
     public float hogamdo;
 
     public Episode[] episodes;
+
+    public string[] smalltalks;
 }

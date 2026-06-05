@@ -829,7 +829,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8505157369474951835}
   m_Father: {fileID: 8743587033652111375}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -975,17 +976,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6894889479259028979}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 733734023569279347}
+  m_Father: {fileID: 7631864055639879121}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 0, y: 87.68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1575856529383478791
 CanvasRenderer:
@@ -1144,6 +1145,9 @@ MonoBehaviour:
   hogamdocount: {fileID: 5192387186273183305}
   hogamdogauge: {fileID: 4194920001774921718}
   icon: {fileID: 7564173463203102935}
+  malpungsun: {fileID: 7345779247668408564}
+  malpungT: {fileID: 4593706977241487417}
+  malpungtimer: 0
   plusT: {fileID: 4605357047198370744}
 --- !u!1 &7345779247668408564
 GameObject:
@@ -1176,7 +1180,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8743587033652111375}
-  - {fileID: 8505157369474951835}
   m_Father: {fileID: 8638281488263749340}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}

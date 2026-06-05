@@ -21,7 +21,7 @@ MonoBehaviour:
     \uC0B6\uC774 \uB354\uC6B1 \uD65C\uAE30\uCC28\uC84C\uB2E4."
   faillog: "\uC544\uC27D\uAC8C\uB3C4 \uC2DC\uBBFC\uB4E4\uC758 \uB2C8\uC988\uC5D0
     \uB9DE\uB294 \uBC95\uC548\uC774 \uC544\uB2C8\uC5C8\uB2E4."
-  succsecs: 90
-  usemoney: 0
+  succsecs: 80
+  usemoney: 100
   ismust: 0
-  plushogamdo: 10
+  plushogamdo: 20

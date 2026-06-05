@@ -23,6 +23,8 @@ public class MainManager : MonoBehaviour
     public Transform stattworld;
     public Division nowchangediv;
     public float nowchangedhogamdo;
+    public bool nowhogamdoplused;
+    public List<string> malpungsuntalks;
 
     private void Awake()
     {
@@ -79,6 +81,11 @@ public class MainManager : MonoBehaviour
         {
             return;
         }
+        
+        if(alldivisioncount <= 0)
+        {
+            alldivisioncount = 0;
+        }
 
         for (int i = 0; i < alldivisioncount; i++)
         {
@@ -89,7 +96,8 @@ public class MainManager : MonoBehaviour
                 StartCoroutine(AlamManager.Alam.AlamText("새로운 구 해금"));
 
                 GameObject s = Instantiate(statt, stattworld);
-                s.GetComponent<Statt>().IHaveNoEyesSoGiveToMeThis(divisons[i].GetComponent<DivisionControl>().my);
+                s.GetComponent<Statt>().mydiv = divisons[i].GetComponent<DivisionControl>().my;
+
             }
 
             if (i < alldivisioncount && seoultime)
@@ -103,6 +111,7 @@ public class MainManager : MonoBehaviour
     {
         nowchangediv = div;
         nowchangedhogamdo = plusvalue;
+        nowhogamdoplused = isplus;
         float muchplus = 0;
 
         while (muchplus < plusvalue)

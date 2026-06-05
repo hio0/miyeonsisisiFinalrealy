@@ -8,7 +8,6 @@ public class DivisionControl : MonoBehaviour
 {
     public Division my;
     public Event myevent;
-    public Vector2 uipos;
 
     public Image hogadogauge;
     public GameObject eventalim;
@@ -39,7 +38,7 @@ public class DivisionControl : MonoBehaviour
         {
             if (!timersetting)
             {
-                eventimer = Random.Range(MainManager.main.alldivisioncount * 2 + 3, MainManager.main.alldivisioncount * 10);
+                eventimer = Random.Range(MainManager.main.alldivisioncount * 3 + 5, MainManager.main.alldivisioncount * 20);
                 timersetting = true;
             }
             else
@@ -71,7 +70,7 @@ public class DivisionControl : MonoBehaviour
 
                     if (eventzuttotimer < 0)
                     {
-                        StartCoroutine(EventManager.Event.Delete());
+                        EventManager.Event.Return();
 
                         Clear();
                     }
@@ -116,6 +115,10 @@ public class DivisionControl : MonoBehaviour
         {
             my.hogamdo = 3000;
         }
+        else if(my.hogamdo <= 0)
+        {
+            my.hogamdo = 1;
+        }
     }
 
     public void GoToEpisode()
@@ -135,7 +138,6 @@ public class DivisionControl : MonoBehaviour
     {
         eventzuttotimer = 0;
         myevent = null;
-        uipos = Vector2.zero;
         eventalim.SetActive(false);
 
         timersetting = false;

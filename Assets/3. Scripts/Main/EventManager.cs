@@ -23,6 +23,10 @@ public class EventManager : MonoBehaviour
     public TMP_Text eventnameT;
     public TMP_Text eventimer;
     public TMP_Text correctT;
+    public TMP_Text whoT;
+
+    public GameObject notice;
+    public TMP_Text noticeT;
 
     public GameObject buttons;
 
@@ -54,30 +58,7 @@ public class EventManager : MonoBehaviour
     {
         if (gb.gameObject.GetComponent<DivisionControl>().myevent == null)
         {
-            int r = Random.Range(0, 2);
-            float p = 0;
-            if (r == 0)
-            {
-                p = Random.Range(250f, 250f);
-            }
-            else
-            {
-                p = Random.Range(-250f, -200f);
-            }
-
-            float x = Mathf.Clamp(gb.anchoredPosition.x + p, -250f, 250f);
-            float y = Mathf.Clamp(gb.anchoredPosition.y + p, -150f, 150f);
-            gb.gameObject.GetComponent<DivisionControl>().uipos = new Vector2(x, y);
-
-
-            bool isok = false;
-            while (!isok)
-            {
-                nowevent = Random.Range(0, events.Length);
-                isok = true;
-            }
-            
-
+            nowevent = Random.Range(0, events.Length);
             div = gb.gameObject.GetComponent<DivisionControl>().my;
             gb.gameObject.GetComponent<DivisionControl>().myevent = events[nowevent];
         }
@@ -94,12 +75,13 @@ public class EventManager : MonoBehaviour
         eventpopup.SetActive(true);
         eventpopup.transform.parent.gameObject.SetActive(true);
         buttons.SetActive(true);
-        eventpopup.GetComponent<RectTransform>().localPosition = divi.uipos;
+        content.anchoredPosition = Vector2.zero;
 
         selectevent = divi.myevent;
         eventnameT.text = selectevent.eventname;
         bg.sprite = selectevent.bg;
         correctT.gameObject.SetActive(false);
+        whoT.text = $"{divi.my.me.name}의 부탁";
         if(selectevent.usemoney <= 0)
         {
             correctT.text = $"성공률: {selectevent.succsecs}%";
@@ -109,25 +91,38 @@ public class EventManager : MonoBehaviour
             correctT.text = $"성공률: {selectevent.succsecs}%\n필요 요금: {selectevent.usemoney}원";
         }
 
-            string log = null;
-        if (selectevent.usemoney >= MoneyManager.Money.hogamdo * 2)
+        notice.SetActive(true);
+        for(int i = 0; i < notice.transform.childCount; i++)
         {
-            log += "\n거금을 지불해야 될 것 같은 느낌이 든다...";
-        }
-        if (selectevent.succsecs <= 60)
-        {
-            log += "\n이 부탁은 성공 난이도가 높을 것 같다...";
-        }
-        if (selectevent.plushogamdo > div.hogamdo)
-        {
-            log += "\n이 부탁은 호감도에 영향이 많이 갈 것 같다...";
-        }
-        if (selectevent.ismust)
-        {
-            log += "\n이 부탁은 중요한 부탁인 것 같다...";
+            Destroy(notice.transform.GetChild(i).gameObject);
         }
 
-        eventT.text = selectevent.eventlog + "\n" + log;
+        if (selectevent.usemoney >= MoneyManager.Money.hogamdo * 2)
+        {
+            Instantiate(noticeT.gameObject, notice.transform);
+            noticeT.text = " - 높은 필요 요금";
+        }
+        else if (selectevent.succsecs <= 60)
+        {
+            Instantiate(noticeT.gameObject, notice.transform);
+            noticeT.text = " - 낮은 성공 확률";
+        }
+        else if (selectevent.plushogamdo > div.hogamdo)
+        {
+            Instantiate(noticeT.gameObject, notice.transform);
+            noticeT.text = " - 높은 호감도 획득량";
+        }
+        else if (selectevent.ismust)
+        {
+            Instantiate(noticeT.gameObject, notice.transform);
+            noticeT.text = " - 무시 패널티 존재";
+        }
+        else
+        {
+            notice.SetActive(false);
+        }
+
+        eventT.text = selectevent.eventlog;
     }
 
     public void Accpet()
@@ -174,7 +169,7 @@ public class EventManager : MonoBehaviour
             float minus = selectevent.plushogamdo / 4;
 
             eventT.text += $"<b><color=#FF407F>\n호감도가 {minus.ToString("F1")}만큼 내려간 것 같다...</color></b>";
-            StartCoroutine(MainManager.main.PlusHogamdo(div, minus, 10, false ));
+            StartCoroutine(MainManager.main.PlusHogamdo(divi.my, minus, 10, false ));
         }
         StartCoroutine(Delete());
     }
@@ -184,7 +179,10 @@ public class EventManager : MonoBehaviour
         buttons.SetActive(false);
         yield return new WaitForSeconds(3f);
 
-        divi.Clear();
+        if(divi != null)
+        {
+            divi.Clear();
+        }
         Hide();
         buttons.SetActive(true);
     }
