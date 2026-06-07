@@ -2963,9 +2963,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextepi:
-  - 100
+  - 50
+  - 200
   - 500
-  - 1000
   divisons:
   - {fileID: 1264563158}
   - {fileID: 214429389}

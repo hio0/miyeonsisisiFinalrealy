@@ -131,5 +131,6 @@ public class Statt : MonoBehaviour
         plusT.GetComponent<RectTransform>().localPosition = new Vector2(-6.6f, 103.9f);
         plusT.color = new UnityEngine.Color(color.r, color.g, color.b, 255);
         plusT.gameObject.SetActive(false);
+        MainManager.main.nowchangediv = null;
     }
 }

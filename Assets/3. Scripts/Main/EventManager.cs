@@ -137,7 +137,7 @@ public class EventManager : MonoBehaviour
 
             int a = Random.Range(1, 101);
 
-            if (a < selectevent.succsecs)
+            if (a <= selectevent.succsecs)
             {
                 eventT.text += "\n" + selectevent.correctlog + $"<b><color=#FF407F>\n호감도가 {selectevent.plushogamdo.ToString("F1")}만큼 올랐다!</color></b>";
                 StartCoroutine(MainManager.main.PlusHogamdo(div, selectevent.plushogamdo, 10, true));
@@ -177,12 +177,11 @@ public class EventManager : MonoBehaviour
     public IEnumerator Delete()
     {
         buttons.SetActive(false);
-        yield return new WaitForSeconds(3f);
-
-        if(divi != null)
+        if (divi != null)
         {
             divi.Clear();
         }
+        yield return new WaitForSeconds(3f);
         Hide();
         buttons.SetActive(true);
     }

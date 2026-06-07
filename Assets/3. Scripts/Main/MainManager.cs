@@ -113,6 +113,7 @@ public class MainManager : MonoBehaviour
         nowchangedhogamdo = plusvalue;
         nowhogamdoplused = isplus;
         float muchplus = 0;
+        float step = plusvalue / framespeed;
 
         while (muchplus < plusvalue)
         {
@@ -120,15 +121,15 @@ public class MainManager : MonoBehaviour
 
             if (isplus)
             {
-                div.hogamdo += plusvalue / framespeed;
+                div.hogamdo += step;
             }
             else
             {
-                div.hogamdo -= plusvalue / framespeed;
+                div.hogamdo -= step;
             }
             GetAllHogamdo();
-            muchplus++;
-            yield return new WaitForSeconds(0.1f);
+            muchplus += step;
+            yield return new WaitForSeconds(0.01f);
         }
         nowchangediv = null;
     }
